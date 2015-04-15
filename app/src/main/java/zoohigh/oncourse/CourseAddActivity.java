@@ -6,37 +6,42 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Spinner;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Vector;
 
 
 public class CourseAddActivity extends ActionBarActivity {
+
+    List<Course> courseList = new ArrayList<Course>();
+
+    Course algo = new Course("CSE 100","Algorithms","4","11111");
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_addcourse);
 
-        String [] Classes = { // list of all available classes
-                "CSE20",
-                "CSE21",
-                "CSE30",
-                "CSE31",
-                "CSE100",
-                "more",
-                "things",
-                "to",
-                "populate",
-                "and",
-                "fill",
-                "this",
-                "list"
-        };
+        ListView classList = (ListView)findViewById(R.id.ClassList);
 
-        ArrayAdapter<String> adapter_list = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,Classes);
-        ListView myList = (ListView)findViewById(R.id.ClassList);
-        myList.setAdapter(adapter_list);
+
+        classList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                Toast.makeText(CourseAddActivity.this,"myPos" + position, Toast.LENGTH_LONG).show();
+            }
+        });
 
 
         String [] Majors = { // list of all available classes
@@ -51,7 +56,6 @@ public class CourseAddActivity extends ActionBarActivity {
         Spinner myDropDown = (Spinner)findViewById(R.id.MajorList);
         myDropDown.setAdapter(adapter_spinner);
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -78,6 +82,26 @@ public class CourseAddActivity extends ActionBarActivity {
     public void InfoOnClick(View view) {
         Intent I = new Intent(this,RecommendationActivity.class);
         startActivity(I);
+    }
+
+    private class CourseListAdapter extends ArrayAdapter<Course> {
+
+        public CourseListAdapter(){
+
+            super (CourseAddActivity.this,R.layout.activity_addcourse);
+        }
+
+        @Override
+        public View getView(int position, View view,ViewGroup parent){
+
+            if(view == null)
+                view = getLayoutInflater().inflate(R.layout.activity_addcourse,parent,false);
+
+
+            Course currentCourse = courseList.get(position);
+
+            return view;
+        }
     }
 
 }
