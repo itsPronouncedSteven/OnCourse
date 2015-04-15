@@ -13,11 +13,32 @@ import android.widget.Spinner;
 
 public class CourseAddActivity extends ActionBarActivity {
 
+    ListView myList;
+    Model[] myItems;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_addcourse);
 
+        myList = (ListView) findViewById(R.id.ClassList);
+        myItems = new Model[10];
+        myItems[0] = new Model("CSE20", 0);
+        myItems[1] = new Model("CSE21", 1);
+        myItems[2] = new Model("CSE30", 1);
+        myItems[3] = new Model("CSE31", 0);
+        myItems[4] = new Model("CSE100", 1);
+        myItems[5] = new Model("CSE120", 1);
+        myItems[6] = new Model("CSE135", 1);
+        myItems[7] = new Model("CSE160", 1);
+        myItems[8] = new Model("CSE175", 1);
+        myItems[9] = new Model("CSE180", 1);
+
+        CustomAdapter adapter = new CustomAdapter(this, myItems);
+        myList.setAdapter(adapter);
+
+        /*
         String [] Classes = { // list of all available classes
                 "CSE20",
                 "CSE21",
@@ -37,7 +58,7 @@ public class CourseAddActivity extends ActionBarActivity {
         ArrayAdapter<String> adapter_list = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,Classes);
         ListView myList = (ListView)findViewById(R.id.ClassList);
         myList.setAdapter(adapter_list);
-
+        */
 
         String [] Majors = { // list of all available classes
                 "Computer Science and Engineering",
