@@ -1,9 +1,11 @@
 package zoohigh.oncourse;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 
 public class RecommendationActivity extends ActionBarActivity {
@@ -12,6 +14,18 @@ public class RecommendationActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recommendation);
+
+        TextView test = (TextView)  findViewById(R.id.textView);
+        Intent I = getIntent();
+        Student mark = (Student)I.getSerializableExtra("mark");
+
+        test.setText(mark.studentCourseList.get(0).getName());
+
+        //Course course = mark.studentCourseList.get(0);
+
+        //String name = mark.studentCourseList.get(0).getName();
+       //test.setText(mark.studentCourseList.get(0).getName());
+
     }
 
 

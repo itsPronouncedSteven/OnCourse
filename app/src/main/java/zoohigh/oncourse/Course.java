@@ -1,5 +1,6 @@
 package zoohigh.oncourse;
 
+import java.io.Serializable;
 import java.util.Vector;
 
 /**
@@ -7,7 +8,7 @@ import java.util.Vector;
  *
  */
 
-public class Course {
+public class Course implements Serializable{
 
 
     private String name,title,credit_hours,crn,description;

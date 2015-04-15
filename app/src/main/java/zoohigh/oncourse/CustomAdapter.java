@@ -22,6 +22,7 @@ public View getView(int position, View convertView, ViewGroup parent) {
         // TODO Auto-generated method stub
         LayoutInflater inflater = ((Activity)context).getLayoutInflater();
         convertView = inflater.inflate(R.layout.row, parent, false);
+
         TextView name = (TextView) convertView.findViewById(R.id.textView1);
         CheckBox cb = (CheckBox) convertView.findViewById(R.id.checkBox1);
         name.setText(modelItems[position].getName());
