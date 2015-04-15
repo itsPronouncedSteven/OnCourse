@@ -23,10 +23,8 @@ public class HomeActivity extends ActionBarActivity {
                 "CSE21",
                 "CSE30",
                 "CSE31",
-                "CSE100"
-                //add more to list of classes here
-
-                ,"more",
+                "CSE100",
+                "more",
                 "things",
                 "to",
                 "populate",
