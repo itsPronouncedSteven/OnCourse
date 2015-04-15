@@ -11,7 +11,7 @@ import android.widget.ListView;
 import android.widget.Spinner;
 
 
-public class HomeActivity extends ActionBarActivity {
+public class CourseAddActivity extends ActionBarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

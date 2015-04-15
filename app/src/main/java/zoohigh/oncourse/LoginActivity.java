@@ -8,7 +8,7 @@ import android.view.View;
 import android.content.Intent;
 
 
-public class MainActivity extends ActionBarActivity {
+public class LoginActivity extends ActionBarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +40,7 @@ public class MainActivity extends ActionBarActivity {
     }
 
     public void LoginOnClick(View view) {
-        Intent I = new Intent(this,HomeActivity.class);
+        Intent I = new Intent(this,CourseAddActivity.class);
         startActivity(I);
     }
 }
