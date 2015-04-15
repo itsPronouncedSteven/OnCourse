@@ -21,15 +21,21 @@ import java.util.Vector;
 
 public class CourseAddActivity extends ActionBarActivity {
 
+<<<<<<< HEAD
     List<Course> courseList = new ArrayList<Course>();
 
     Course algo = new Course("CSE 100","Algorithms","4","11111");
 
+=======
+    ListView myList;
+    Model[] myItems;
+>>>>>>> 5d1e8fa120d5efa3446197770a37aa96c1d3107f
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+<<<<<<< HEAD
         setContentView(R.layout.activity_addcourse);
 
         ListView classList = (ListView)findViewById(R.id.ClassList);
@@ -43,6 +49,47 @@ public class CourseAddActivity extends ActionBarActivity {
             }
         });
 
+=======
+        setContentView(R.layout.activity_courseadd);
+
+        myList = (ListView) findViewById(R.id.ClassList);
+        myItems = new Model[10];
+        myItems[0] = new Model("CSE20", 0);
+        myItems[1] = new Model("CSE21", 1);
+        myItems[2] = new Model("CSE30", 1);
+        myItems[3] = new Model("CSE31", 0);
+        myItems[4] = new Model("CSE100", 1);
+        myItems[5] = new Model("CSE120", 1);
+        myItems[6] = new Model("CSE135", 1);
+        myItems[7] = new Model("CSE160", 1);
+        myItems[8] = new Model("CSE175", 1);
+        myItems[9] = new Model("CSE180", 1);
+
+        CustomAdapter adapter = new CustomAdapter(this, myItems);
+        myList.setAdapter(adapter);
+
+        /*
+        String [] Classes = { // list of all available classes
+                "CSE20",
+                "CSE21",
+                "CSE30",
+                "CSE31",
+                "CSE100",
+                "more",
+                "things",
+                "to",
+                "populate",
+                "and",
+                "fill",
+                "this",
+                "list"
+        };
+
+        ArrayAdapter<String> adapter_list = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,Classes);
+        ListView myList = (ListView)findViewById(R.id.ClassList);
+        myList.setAdapter(adapter_list);
+        */
+>>>>>>> 5d1e8fa120d5efa3446197770a37aa96c1d3107f
 
         String [] Majors = { // list of all available classes
                 "Computer Science and Engineering",
