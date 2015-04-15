@@ -16,7 +16,7 @@ public class CourseAddActivity extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home);
+        setContentView(R.layout.activity_courseadd);
 
         String [] Classes = { // list of all available classes
                 "CSE20",
