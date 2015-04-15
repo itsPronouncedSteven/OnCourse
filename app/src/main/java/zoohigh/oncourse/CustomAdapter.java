@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class CustomAdapter extends ArrayAdapter{
         Model[] modelItems = null;
@@ -17,11 +18,36 @@ public CustomAdapter(Context context, Model[] resource) {
         this.context = context;
         this.modelItems = resource;
         }
+
+private class ViewHolder{
+    TextView code;
+    CheckBox name;
+}
+
 @Override
 public View getView(int position, View convertView, ViewGroup parent) {
         // TODO Auto-generated method stub
+
+       // ViewHolder holder = null;
+
         LayoutInflater inflater = ((Activity)context).getLayoutInflater();
         convertView = inflater.inflate(R.layout.row, parent, false);
+/*
+        holder = new ViewHolder();
+        holder.name = (CheckBox) convertView.findViewById(R.id.checkBox1);
+        convertView.setTag(holder);
+
+        holder.name.setOnClickListener(new View.OnClickListener() {
+
+            public void onClick(View v){
+
+                CheckBox cb = (CheckBox) v;
+                Model model = (Model)cb.getTag();
+                Toast.makeText(getApplicationContext(),"clicked on check box" + cb.getText() + "is" cb.isChecked(),Toast.LENGTH_LONG).show();
+            }
+
+        });
+*/
         TextView name = (TextView) convertView.findViewById(R.id.textView1);
         CheckBox cb = (CheckBox) convertView.findViewById(R.id.checkBox1);
         name.setText(modelItems[position].getName());
@@ -29,6 +55,9 @@ public View getView(int position, View convertView, ViewGroup parent) {
         cb.setChecked(true);
         else
         cb.setChecked(false);
+
+
+
         return convertView;
         }
 }

@@ -1,14 +1,16 @@
 package zoohigh.oncourse;
 
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Vector;
 
 /**
  * Created by Shan Fernando on 4/9/2015.
  */
 
-public class Student {
+public class Student implements Serializable{
 
-    Vector<Course> studentCourseList;
+    public ArrayList<Course> studentCourseList;
     String name;
     Major major;
 
@@ -16,13 +18,31 @@ public class Student {
     Student(){
 
         name = "name";
-        studentCourseList = new Vector<Course>();
+        studentCourseList = new ArrayList<Course>();
     }
 
     Student(String Name, Major majors){
 
         name = Name;
         major = majors;
+        studentCourseList = new ArrayList<Course>();
     }
+
+    void addStudentCourse(Course course){
+
+        studentCourseList.add(course);
+    }
+
+    String getName(){
+
+        return name;
+    }
+
+    Major getMajor(){
+
+        return major;
+    }
+
+
 
 }

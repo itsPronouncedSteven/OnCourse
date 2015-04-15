@@ -1,5 +1,7 @@
 package zoohigh.oncourse;
 
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Vector;
 
 /**
@@ -7,18 +9,18 @@ import java.util.Vector;
  *
  */
 
-public class Course {
+public class Course implements Serializable{
 
 
     private String name,title,credit_hours,crn,description;
-    Vector<Course> prereqs;
+    ArrayList<Course> prereqs;
 
     public Course(){
         name = "name";
         title = "title";
         credit_hours = "0";
         crn = "00000";
-        prereqs = new Vector<Course>();
+        prereqs = new ArrayList<>();
     }
 
     public Course(String Name, String Title, String Credit_hours,String CRN){
@@ -28,7 +30,7 @@ public class Course {
         credit_hours = Credit_hours;
         crn = CRN;
 
-        prereqs = new Vector<Course>();
+        prereqs = new ArrayList<>();
 
     }
 
@@ -66,5 +68,10 @@ public class Course {
     public void setCrn(String crn){
         this.crn = crn;
     }
+
+    void setPrereqs(Course course){
+        prereqs.add(course);
+    }
+
 
 }
