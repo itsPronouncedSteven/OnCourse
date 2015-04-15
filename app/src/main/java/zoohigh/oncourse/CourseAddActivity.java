@@ -11,12 +11,12 @@ import android.widget.ListView;
 import android.widget.Spinner;
 
 
-public class HomeActivity extends ActionBarActivity {
+public class CourseAddActivity extends ActionBarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home);
+        setContentView(R.layout.activity_addcourse);
 
         String [] Classes = { // list of all available classes
                 "CSE20",
