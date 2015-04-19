@@ -22,11 +22,6 @@ import java.util.Vector;
 
 public class CourseAddActivity extends ActionBarActivity {
 
-    List<Course> courseList = new ArrayList<Course>();
-
-    Course intro = new Course("CSE 20","Intro to Programming","4","11111");
-
-
     ListView myList;
     Model[] myItems;
 
@@ -38,19 +33,42 @@ public class CourseAddActivity extends ActionBarActivity {
 
         setContentView(R.layout.activity_courseadd);
 
+        List<Course> courseList = new ArrayList<Course>();
+
+        Course cse20 = new Course("CSE 20","Intro to Programming","4","11111");
+        Course cse21 = new Course("CSE 21","Intro to Programming","4","11111");
+        Course cse30 = new Course("CSE 30","Data Structs","4","11111");
+        cse30.setPrereqs(cse21);
+        Course cse31 = new Course("CSE 31","Intro II","4","11111");
+        cse31.setPrereqs(cse30);
+        Course cse100 = new Course("CSE 100","Algorithm Design and Analysis","4","11111");
+        cse100.setPrereqs(cse31);
+        Course cse160 = new Course("CSE 160","Networks","4","11111");
+        cse160.setPrereqs(cse31);
+        Course cse120 = new Course("CSE 120","Software Engineering","4","11111");
+        cse120.setPrereqs(cse160);
+        Course cse135 = new Course("CSE 135","Intro to Theory of Computation","4","11111");
+        cse135.setPrereqs(cse160);
+        Course cse175 = new Course("CSE 175","Intro to AI","4","11111");
+        cse175.setPrereqs(cse20);
+        cse175.setPrereqs(cse21);
+        Course cse180 = new Course("CSE 180","Intro to Robotics","4","11111");
+        cse180.setPrereqs(cse31);
+
+
         myList = (ListView) findViewById(R.id.ClassList);
-        myItems = new Model[1];
-        myItems[0] = new Model("CSE20",1,intro);
-     /*   myItems[1] = new Model("CSE21", 1);
-        myItems[2] = new Model("CSE30", 1);
-        myItems[3] = new Model("CSE31", 0);
-        myItems[4] = new Model("CSE100", 1);
-        myItems[5] = new Model("CSE120", 1);
-        myItems[6] = new Model("CSE135", 1);
-        myItems[7] = new Model("CSE160", 1);
-        myItems[8] = new Model("CSE175", 1);
-        myItems[9] = new Model("CSE180", 1);
-*/
+        myItems = new Model[10];
+        myItems[0] = new Model("CSE20",1,cse20);
+        myItems[1] = new Model("CSE21", 1,cse21);
+        myItems[2] = new Model("CSE30", 1,cse30);
+        myItems[3] = new Model("CSE31", 1,cse31);
+        myItems[4] = new Model("CSE100", 0,cse100);
+        myItems[5] = new Model("CSE120", 0,cse120);
+        myItems[6] = new Model("CSE135", 0,cse135);
+        myItems[7] = new Model("CSE160", 0,cse160);
+        myItems[8] = new Model("CSE175", 0,cse175);
+        myItems[9] = new Model("CSE180", 0,cse180);
+
         CustomAdapter adapter = new CustomAdapter(this, myItems);
         myList.setAdapter(adapter);
 
