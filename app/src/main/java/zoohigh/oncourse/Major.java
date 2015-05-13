@@ -1,8 +1,9 @@
 package zoohigh.oncourse;
 
+import java.io.Serializable;
 import java.util.Vector;
 
-public class Major {
+public class Major implements Serializable{
 
     Vector<Course> majorCourseList;
     String name;
