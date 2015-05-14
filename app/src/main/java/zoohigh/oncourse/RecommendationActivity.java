@@ -59,68 +59,14 @@ public class RecommendationActivity extends ActionBarActivity {
 
 
         TextView test = (TextView)  findViewById(R.id.textView);
-        courseListView      = (ListView) findViewById(R.id.listView_recommend);
+        courseListView = (ListView) findViewById(R.id.listView_recommend);
 
         Intent I = getIntent();
         Student student = (Student)I.getSerializableExtra("student");
 
-        //hardcoded course information
-        Course cse20 = new Course("CSE 20","Intro to Programming","4","11111");
-        Course cse21 = new Course("CSE 21","Intro to Programming","4","11111");
-        Course cse30 = new Course("CSE 30","Data Structures","4","11111");
-        cse30.setPrereqs(cse21);
-        Course cse31 = new Course("CSE 31","Intro II","4","11111");
-        cse31.setPrereqs(cse30);
-        Course cse100 = new Course("CSE 100","Algorithm Design and Analysis","4","11111");
-        cse100.setPrereqs(cse31);
-        Course cse160 = new Course("CSE 160","Networks","4","11111");
-        cse160.setPrereqs(cse31);
-        Course cse120 = new Course("CSE 120","Software Engineering","4","11111");
-        cse120.setPrereqs(cse160);
-        Course cse135 = new Course("CSE 135","Intro to Theory of Computation","4","11111");
-        cse135.setPrereqs(cse160);
-        Course cse175 = new Course("CSE 175","Intro to AI","4","11111");
-        cse175.setPrereqs(cse20);
-        cse175.setPrereqs(cse21);
-        Course cse180 = new Course("CSE 180","Intro to Robotics","4","11111");
-        cse180.setPrereqs(cse31);
-
-        ArrayList<Course> catalog = new ArrayList<>();
-        catalog.add(cse20);
-        catalog.add(cse21);
-        catalog.add(cse30);
-        catalog.add(cse31);
-        catalog.add(cse100);
-        catalog.add(cse160);
-        catalog.add(cse120);
-        catalog.add(cse135);
-        catalog.add(cse175);
-        catalog.add(cse180);
-
-
-        recommendedCourses = catalog;
-
-        for(int i=0;i<recommendedCourses.size();i++){
-            for(int j=0;j<student.studentCourseList.size();j++){
-                if(recommendedCourses.get(i).getName().equals(student.studentCourseList.get(j).getName())){
-
-                        recommendedCourses.remove(catalog.get(i));
-                }
-            }
-        }
-
-        /*
-        //recommendedCourses = getRecommended(mark,catalog);
-        for(int i=0;i<catalog.size();i++){
-            for(int j=0;j<mark.studentCourseList.size();j++){
-                if(!catalog.get(i).getName().equals(mark.studentCourseList.get(j).getName())){
-
-                    if(!(recommendedCourses.contains(mark.studentCourseList.get(j))))
-                        recommendedCourses.add(catalog.get(i));
-                }
-            }
-        }
-        */
+        Schedule schedule = new Schedule();
+        schedule.BuildSchedule(student.getMajor().majorCourseList,student);
+        schedule.printSchedule();
 
 
         unique = removeDuplicates(recommendedCourses);
