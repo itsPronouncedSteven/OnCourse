@@ -62,7 +62,7 @@ public class RecommendationActivity extends ActionBarActivity {
         courseListView      = (ListView) findViewById(R.id.listView_recommend);
 
         Intent I = getIntent();
-        Student mark = (Student)I.getSerializableExtra("mark");
+        Student student = (Student)I.getSerializableExtra("student");
 
         //hardcoded course information
         Course cse20 = new Course("CSE 20","Intro to Programming","4","11111");
@@ -101,8 +101,8 @@ public class RecommendationActivity extends ActionBarActivity {
         recommendedCourses = catalog;
 
         for(int i=0;i<recommendedCourses.size();i++){
-            for(int j=0;j<mark.studentCourseList.size();j++){
-                if(recommendedCourses.get(i).getName().equals(mark.studentCourseList.get(j).getName())){
+            for(int j=0;j<student.studentCourseList.size();j++){
+                if(recommendedCourses.get(i).getName().equals(student.studentCourseList.get(j).getName())){
 
                         recommendedCourses.remove(catalog.get(i));
                 }

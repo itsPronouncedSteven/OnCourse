@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ListView;
 import android.widget.Spinner;
@@ -25,9 +26,6 @@ public class CourseAddActivity extends ActionBarActivity {
     ListView myList;
     Model[] myItems;
 
-
-
-    //test
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,8 +54,11 @@ public class CourseAddActivity extends ActionBarActivity {
         Course cse180 = new Course("CSE 180","Intro to Robotics","4","11111");
         cse180.setPrereqs(cse31);
 
+        Major CSE = new Major("Computer Science and Engineering");
+        final Student student = new Student("student",CSE);
 
-        myList = (ListView) findViewById(R.id.ClassList);
+
+        myList = (ListView)findViewById(R.id.ClassList);
         myItems = new Model[10];
         myItems[0] = new Model("CSE20",1,cse20);
         myItems[1] = new Model("CSE21", 1,cse21);
@@ -98,6 +99,21 @@ public class CourseAddActivity extends ActionBarActivity {
         ArrayAdapter<String> adapter_spinner = new ArrayAdapter<String>(this, android.R.layout.simple_dropdown_item_1line,Majors);
         Spinner myDropDown = (Spinner)findViewById(R.id.MajorList);
         myDropDown.setAdapter(adapter_spinner);
+
+        final Button continue_button = (Button)findViewById(R.id.SelectInfo);
+        final Intent I = new Intent(this,RecommendationActivity.class);
+        continue_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(getApplicationContext(), "Your classes have been added.", Toast.LENGTH_SHORT).show();
+
+                I.putExtra("student", student);
+                startActivity(I);
+
+            }
+
+        });
+
     }
 
     @Override
@@ -122,10 +138,8 @@ public class CourseAddActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    Major CSE = new Major("Computer Science and Engineering");
-    Student mark = new Student("Mark",CSE);
 
-
+/*
     public void InfoOnClick(View view) {
         Intent I = new Intent(this,RecommendationActivity.class);
 
@@ -148,5 +162,6 @@ public class CourseAddActivity extends ActionBarActivity {
 
 
     }
+    */
 
 }
