@@ -11,7 +11,7 @@
      android:layout_width="wrap_content"
      android:layout_height="wrap_content"
      android:textAppearance="?android:attr/textAppearanceLarge"
-     android:text="Please Enter Some Information"
+     android:text="What classes have you taken?"
      android:id="@+id/Banner"
      android:layout_alignParentTop="true"
      android:layout_centerHorizontal="true"
@@ -47,7 +47,8 @@
         android:text="Continue"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true"
+        android:textColor="#000000" />
 
 
 </RelativeLayout>
