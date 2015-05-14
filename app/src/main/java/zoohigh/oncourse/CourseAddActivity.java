@@ -27,6 +27,7 @@ public class CourseAddActivity extends ActionBarActivity {
 
 
 
+    //test
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
