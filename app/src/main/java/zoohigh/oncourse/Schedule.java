@@ -21,7 +21,7 @@ public class Schedule {
 	void BuildSchedule(ArrayList<Course> catalog, Student student){
 			potentialStudentList = student.studentCourseList;
 			//if the recommendedList is empty build the list, then build the initial semester
-			for(int index = 0;index < 3;index++)
+			for(int index = 0;index < 2;index++)
 			{
 				for(OFFERED current_semester: OFFERED.values())
 				{

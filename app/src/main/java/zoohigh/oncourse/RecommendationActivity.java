@@ -37,7 +37,7 @@ public class RecommendationActivity extends ActionBarActivity {
 
         Schedule schedule = new Schedule();
         schedule.BuildSchedule(student.getMajor().majorCourseList,student);
-        //schedule.printSchedule();
+        schedule.printSchedule();
 
         //unique = removeDuplicates(recommendedCourses);
         //unique = schedule.recommendedList;
@@ -141,14 +141,32 @@ public class RecommendationActivity extends ActionBarActivity {
             //current course stores the first course within the selected semester
             if(!current_semester.semesterCourseList.isEmpty())
             {
-                System.out.println("THIS SEMESTER IS NOT EMPTY");
-                Course current_course = current_semester.semesterCourseList.get(0);
-                TextView course_name = (TextView) view.findViewById(R.id.courseName);
-                course_name.setText(current_course.getName());
+                    Course current_course1 = current_semester.semesterCourseList.get(0);
+                    TextView course_name1 = (TextView) view.findViewById(R.id.courseName1);
+                    course_name1.setText(current_course1.getName());
+
+                if(current_semester.semesterCourseList.get(1) != null)
+                {
+                    Course current_course2 = current_semester.semesterCourseList.get(1);
+                    TextView course_name2 = (TextView) view.findViewById(R.id.courseName2);
+                    course_name2.setText(current_course2.getName());
+                }
+
+                if(current_semester.semesterCourseList.get(2) != null)
+                {
+                        Course current_course3 = current_semester.semesterCourseList.get(2);
+                        TextView course_name3 = (TextView) view.findViewById(R.id.courseName3);
+                        course_name3.setText(current_course3.getName());
+                }
+
+                   // Course current_course4 = current_semester.semesterCourseList.get(3);
+                    //TextView course_name4 = (TextView) view.findViewById(R.id.courseName4);
+                    //course_name3.setText(current_course4.getName());
+
             }
             else
             {
-                System.out.println("THIS SEMESTER IS EMPTY");
+
             }
 
             return view;
@@ -156,7 +174,6 @@ public class RecommendationActivity extends ActionBarActivity {
 
 
     }
-
 
     ArrayList<Course> removeDuplicates(ArrayList<Course> list) {
 
