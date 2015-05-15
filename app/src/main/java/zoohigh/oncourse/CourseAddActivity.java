@@ -127,13 +127,11 @@ public class CourseAddActivity extends ActionBarActivity {
                 //Toast.makeText(CourseAddActivity.this,"myPos" + position, Toast.LENGTH_LONG).show();
             }
         });
-*/
-<<<<<<< HEAD
-=======
+*
 
 
         /*
->>>>>>> ddbd851bc0a7e68b0e1f6e86cd0d5f73d792eef6
+
         String [] Majors = { // list of all available classes
                 "Computer Science and Engineering",
                 "Mechanical Engineering",
