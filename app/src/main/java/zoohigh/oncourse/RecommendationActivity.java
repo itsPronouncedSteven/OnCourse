@@ -7,10 +7,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -19,7 +20,9 @@ import java.util.HashSet;
 public class RecommendationActivity extends ActionBarActivity {
 
 
-    ArrayList<Course> unique = new ArrayList<>();
+    ArrayList<Course> unique = new ArrayList<Course>();
+    ArrayList<Semester> semester_list = new ArrayList<Semester>();
+
     ListView courseListView;
 
     @Override
@@ -36,13 +39,17 @@ public class RecommendationActivity extends ActionBarActivity {
         schedule.BuildSchedule(student.getMajor().majorCourseList,student);
         //schedule.printSchedule();
 
-
         //unique = removeDuplicates(recommendedCourses);
-        unique = schedule.recommendedList;
+        //unique = schedule.recommendedList;
 
-        ArrayAdapter<Course> adapter = new CourseListAdapter();
+        semester_list = schedule.semesterList;
+        ArrayAdapter<Semester> adapter = new SemesterListAdapter();
         courseListView.setAdapter(adapter);
 
+        //ArrayAdapter<Course> adapter = new CourseListAdapter();
+        //courseListView.setAdapter(adapter);
+
+        /*
         courseListView.setOnItemClickListener(
                 new AdapterView.OnItemClickListener() {
 
@@ -60,29 +67,7 @@ public class RecommendationActivity extends ActionBarActivity {
                     }
                 }
         );
-
-        //TextView test = (TextView)  findViewById(R.id.textView);
-        //test.setText(recommendedCourses.get(7).getName());
-    }
-
-    ArrayList<Course> removeDuplicates(ArrayList<Course> list) {
-
-        // Store unique items in result.
-        ArrayList<Course> result = new ArrayList<>();
-
-        // Record encountered Strings in HashSet.
-        HashSet<Course> set = new HashSet<>();
-
-        // Loop over argument list.
-        for (Course item : list) {
-
-            // If String is not in set, add it to the list and the set.
-            if (!set.contains(item)) {
-                result.add(item);
-                set.add(item);
-            }
-        }
-        return result;
+        */
     }
 
 
@@ -108,30 +93,88 @@ public class RecommendationActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    /*
     private class CourseListAdapter extends ArrayAdapter<Course> {
 
         public CourseListAdapter(){
 
-            super (RecommendationActivity.this,R.layout.coursename,unique);
+            super (RecommendationActivity.this,R.layout.schedule,unique);
         }
 
         @Override
         public View getView(int position, View view,ViewGroup parent){
 
             if(view == null)
-                view = getLayoutInflater().inflate(R.layout.coursename,parent,false);
+                view = getLayoutInflater().inflate(R.layout.schedule,parent,false);
 
             Course currentCourse = unique.get(position);
 
-            TextView course_name = (TextView) view.findViewById(R.id.textView1);
+            TextView course_name = (TextView) view.findViewById(R.id.semesterName);
             course_name.setText(currentCourse.getName());
-
-
-
 
             return view;
         }
 
 
+
+    }
+    */
+
+    //TEST FOR DISPLAYING SEMESTER LIST TO SCREEN
+    private class SemesterListAdapter extends ArrayAdapter<Semester> {
+
+        public SemesterListAdapter(){
+
+            super (RecommendationActivity.this,R.layout.schedule,semester_list);
+        }
+
+        @Override
+        public View getView(int position, View view,ViewGroup parent){
+
+            if(view == null)
+                view = getLayoutInflater().inflate(R.layout.schedule,parent,false);
+
+            Semester current_semester = semester_list.get(position);
+            TextView semester_name = (TextView) view.findViewById(R.id.semesterName);
+            semester_name.setText(current_semester.getName());
+
+            //current course stores the first course within the selected semester
+            if(!current_semester.semesterCourseList.isEmpty())
+            {
+                System.out.println("THIS SEMESTER IS NOT EMPTY");
+                Course current_course = current_semester.semesterCourseList.get(0);
+                TextView course_name = (TextView) view.findViewById(R.id.courseName);
+                course_name.setText(current_course.getName());
+            }
+            else
+            {
+                System.out.println("THIS SEMESTER IS EMPTY");
+            }
+
+            return view;
+        }
+
+
+    }
+
+
+    ArrayList<Course> removeDuplicates(ArrayList<Course> list) {
+
+        // Store unique items in result.
+        ArrayList<Course> result = new ArrayList<>();
+
+        // Record encountered Strings in HashSet.
+        HashSet<Course> set = new HashSet<>();
+
+        // Loop over argument list.
+        for (Course item : list) {
+
+            // If String is not in set, add it to the list and the set.
+            if (!set.contains(item)) {
+                result.add(item);
+                set.add(item);
+            }
+        }
+        return result;
     }
 }
