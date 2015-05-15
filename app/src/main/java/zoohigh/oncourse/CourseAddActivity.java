@@ -128,9 +128,6 @@ public class CourseAddActivity extends ActionBarActivity {
             }
         });
 */
-
-
-
         String [] Majors = { // list of all available classes
                 "Computer Science and Engineering",
                 "Mechanical Engineering",

@@ -145,23 +145,25 @@ public class RecommendationActivity extends ActionBarActivity {
                     TextView course_name1 = (TextView) view.findViewById(R.id.courseName1);
                     course_name1.setText(current_course1.getName());
 
-                if(current_semester.semesterCourseList.get(1) != null)
+                if(current_semester.semesterCourseList.size() >= 2)
                 {
                     Course current_course2 = current_semester.semesterCourseList.get(1);
                     TextView course_name2 = (TextView) view.findViewById(R.id.courseName2);
                     course_name2.setText(current_course2.getName());
                 }
 
-                if(current_semester.semesterCourseList.get(2) != null)
+                if(current_semester.semesterCourseList.size() >= 3)
                 {
                         Course current_course3 = current_semester.semesterCourseList.get(2);
                         TextView course_name3 = (TextView) view.findViewById(R.id.courseName3);
                         course_name3.setText(current_course3.getName());
                 }
 
-                   // Course current_course4 = current_semester.semesterCourseList.get(3);
-                    //TextView course_name4 = (TextView) view.findViewById(R.id.courseName4);
-                    //course_name3.setText(current_course4.getName());
+                if(current_semester.semesterCourseList.size() >= 4) {
+                    Course current_course4 = current_semester.semesterCourseList.get(3);
+                    TextView course_name4 = (TextView) view.findViewById(R.id.courseName4);
+                    course_name4.setText(current_course4.getName());
+                }
 
             }
             else
