@@ -4,7 +4,7 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/oncourse_logo_bg1"
         android:label="OnCourse"
         android:theme="@style/AppTheme" >
         <activity android:name=".SplashActivity" >
