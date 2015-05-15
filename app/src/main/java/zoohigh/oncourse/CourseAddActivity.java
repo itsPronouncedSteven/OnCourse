@@ -130,7 +130,7 @@ public class CourseAddActivity extends ActionBarActivity {
 */
 
 
-
+        /*
         String [] Majors = { // list of all available classes
                 "Computer Science and Engineering",
                 "Mechanical Engineering",
@@ -142,6 +142,7 @@ public class CourseAddActivity extends ActionBarActivity {
         ArrayAdapter<String> adapter_spinner = new ArrayAdapter<String>(this, android.R.layout.simple_dropdown_item_1line,Majors);
         Spinner myDropDown = (Spinner)findViewById(R.id.MajorList);
         myDropDown.setAdapter(adapter_spinner);
+        */
 
         final Button continue_button = (Button)findViewById(R.id.SelectInfo);
         final Intent I = new Intent(this,RecommendationActivity.class);

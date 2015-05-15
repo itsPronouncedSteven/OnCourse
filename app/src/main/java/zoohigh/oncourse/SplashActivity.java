@@ -7,7 +7,7 @@ import android.os.Handler;
 
 public class SplashActivity extends Activity {
 
-    private final int duration = 2000;
+    private final int duration = 1500;
 
     @Override
     public void onCreate(Bundle onSavedInstanceState){
