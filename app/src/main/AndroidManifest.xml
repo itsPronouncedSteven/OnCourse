@@ -4,14 +4,11 @@
 
     <application
         android:allowBackup="true"
-<<<<<<< HEAD
-        android:icon="@drawable/oncourse_logo_bg1"
-=======
-        android:icon="@drawable/oncourselogotrans"
->>>>>>> 74bff063cc904d4193752331eb9653e7d0fe97d3
+        android:icon="@drawable/grey_oncourse_logo_bg"
         android:label="OnCourse"
-        android:theme="@style/AppTheme" >
-        <activity android:name=".SplashActivity" >
+        android:theme="@style/AppTheme">
+        <activity android:name=".SplashActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
@@ -20,13 +17,16 @@
 
 
         </activity>
-        <activity android:name=".CourseAddActivity" >
+        <activity android:name=".CourseAddActivity"
+            android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".RecommendationActivity" >
+        <activity android:name=".RecommendationActivity"
+            android:screenOrientation="portrait">
         </activity>
         <activity
             android:name=".CourseDetail"
-            android:label="@string/title_activity_course_detail" >
+            android:label="@string/title_activity_course_detail"
+            android:screenOrientation="portrait">
         </activity>
     </application>
 
