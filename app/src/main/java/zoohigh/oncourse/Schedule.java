@@ -16,7 +16,8 @@ public class Schedule {
 		
 		semesterList = new ArrayList<Semester>();
 	}
-	
+
+    //made void into array<course> to just see if it works on the listview of recommended courses
 	void BuildSchedule(ArrayList<Course> catalog, Student student){
 			potentialStudentList = student.studentCourseList;
 			//if the recommendedList is empty build the list, then build the initial semester
@@ -81,7 +82,6 @@ public class Schedule {
 				}
 	
 			}
-			
 	}
 	
 	void buildRecommendedList(ArrayList<Course> catalog, ArrayList<Course> courseList)

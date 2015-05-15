@@ -99,9 +99,6 @@ public class CourseAddActivity extends ActionBarActivity {
 
         student.addStudentCourse(cse20);
         student.addStudentCourse(cse21);
-        student.addStudentCourse(cse30);
-        student.addStudentCourse(cse31);
-
 
 
         myList = (ListView)findViewById(R.id.ClassList);
@@ -148,10 +145,22 @@ public class CourseAddActivity extends ActionBarActivity {
 
         final Button continue_button = (Button)findViewById(R.id.SelectInfo);
         final Intent I = new Intent(this,RecommendationActivity.class);
+
         continue_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Toast.makeText(getApplicationContext(), "Your classes have been added.", Toast.LENGTH_SHORT).show();
+
+                for(int i = 0;i < myItems.length;i++){
+
+                    System.out.println("my items:" + myItems[i]);
+
+                    if(myItems[i].getValue() == 1){
+
+                        student.addStudentCourse(myItems[i].getCourse());
+                        //mark.addStudentCourse(intro);
+                    }
+                }
 
                 I.putExtra("student", student);
                 startActivity(I);

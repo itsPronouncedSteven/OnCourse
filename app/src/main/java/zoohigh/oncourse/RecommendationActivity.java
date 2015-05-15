@@ -18,37 +18,7 @@ import java.util.HashSet;
 
 public class RecommendationActivity extends ActionBarActivity {
 
-/*
-   public  ArrayList<Course> getRecommended(Student student, ArrayList<Course> catalog){
 
-        //Recommended results
-        ArrayList<Course> recommendedCourses = new ArrayList<>();
-
-        //List of courses student has taken
-        ArrayList<Course> takenCourses = student.studentCourseList;
-
-       //check prereqs of each course against student taken courses
-        //if student has not taken course and taken all prereqs, add course to recCourses
-        for(int i=0;i<catalog.size();i++){
-            //for(int j=0;j<takenCourses.size();j++){
-            int check = takenCourses.indexOf(catalog.get(i));
-            //int checkPre;
-            if (check == -1){
-                for(int j=0;j<catalog.get(i).prereqs.size();j++){
-                    int checkPre = takenCourses.indexOf(catalog.get(i).prereqs.get(j));
-                    if(checkPre != -1)
-                        recommendedCourses.add(catalog.get(i));
-                }
-            }
-            //}
-        } //Loop through all courses
-
-
-        return recommendedCourses;
-    }
-    */
-
-    ArrayList<Course> recommendedCourses = new ArrayList<>();
     ArrayList<Course> unique = new ArrayList<>();
     ListView courseListView;
 
@@ -57,8 +27,6 @@ public class RecommendationActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recommendation);
 
-
-        TextView test = (TextView)  findViewById(R.id.textView);
         courseListView = (ListView) findViewById(R.id.listView_recommend);
 
         Intent I = getIntent();
@@ -66,10 +34,11 @@ public class RecommendationActivity extends ActionBarActivity {
 
         Schedule schedule = new Schedule();
         schedule.BuildSchedule(student.getMajor().majorCourseList,student);
-        schedule.printSchedule();
+        //schedule.printSchedule();
 
 
-        unique = removeDuplicates(recommendedCourses);
+        //unique = removeDuplicates(recommendedCourses);
+        unique = schedule.recommendedList;
 
         ArrayAdapter<Course> adapter = new CourseListAdapter();
         courseListView.setAdapter(adapter);
@@ -92,13 +61,8 @@ public class RecommendationActivity extends ActionBarActivity {
                 }
         );
 
+        //TextView test = (TextView)  findViewById(R.id.textView);
         //test.setText(recommendedCourses.get(7).getName());
-
-        //Course course = mark.studentCourseList.get(0);
-
-        //String name = mark.studentCourseList.get(0).getName();
-       //test.setText(mark.studentCourseList.get(2).getName());
-
     }
 
     ArrayList<Course> removeDuplicates(ArrayList<Course> list) {

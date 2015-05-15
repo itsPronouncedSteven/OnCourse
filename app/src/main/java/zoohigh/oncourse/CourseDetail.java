@@ -18,12 +18,13 @@ public class CourseDetail extends ActionBarActivity {
         Intent I = getIntent();
         Course course = (Course)I.getSerializableExtra("course");
 
+        //System.out.println("coursname:" + course.getName());
         TextView coursename = (TextView)  findViewById(R.id.txtcoursename);
         coursename.setText(course.getName());
         TextView coursetitle = (TextView)  findViewById(R.id.txtcoursetitle);
         coursetitle.setText(course.getTitle());
         TextView credithours = (TextView)  findViewById(R.id.txtcredithours);
-        credithours.setText(course.getCredit_hours());
+        credithours.setText(String.valueOf(course.getCredit_hours()));
         TextView crn = (TextView)  findViewById(R.id.txtcrn);
         crn.setText(course.getCrn());
 
