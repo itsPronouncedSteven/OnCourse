@@ -12,44 +12,18 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 import java.util.HashSet;
 
 
 public class RecommendationActivity extends ActionBarActivity {
 
-/*
-   public  ArrayList<Course> getRecommended(Student student, ArrayList<Course> catalog){
 
-        //Recommended results
-        ArrayList<Course> recommendedCourses = new ArrayList<>();
+    ArrayList<Course> unique = new ArrayList<Course>();
+    ArrayList<Semester> semester_list = new ArrayList<Semester>();
 
-        //List of courses student has taken
-        ArrayList<Course> takenCourses = student.studentCourseList;
-
-       //check prereqs of each course against student taken courses
-        //if student has not taken course and taken all prereqs, add course to recCourses
-        for(int i=0;i<catalog.size();i++){
-            //for(int j=0;j<takenCourses.size();j++){
-            int check = takenCourses.indexOf(catalog.get(i));
-            //int checkPre;
-            if (check == -1){
-                for(int j=0;j<catalog.get(i).prereqs.size();j++){
-                    int checkPre = takenCourses.indexOf(catalog.get(i).prereqs.get(j));
-                    if(checkPre != -1)
-                        recommendedCourses.add(catalog.get(i));
-                }
-            }
-            //}
-        } //Loop through all courses
-
-
-        return recommendedCourses;
-    }
-    */
-
-    ArrayList<Course> recommendedCourses = new ArrayList<>();
-    ArrayList<Course> unique = new ArrayList<>();
     ListView courseListView;
 
     @Override
@@ -57,77 +31,26 @@ public class RecommendationActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recommendation);
 
-
-        TextView test = (TextView)  findViewById(R.id.textView);
-        courseListView      = (ListView) findViewById(R.id.listView_recommend);
+        courseListView = (ListView) findViewById(R.id.listView_recommend);
 
         Intent I = getIntent();
-        Student mark = (Student)I.getSerializableExtra("mark");
+        Student student = (Student)I.getSerializableExtra("student");
 
-        //hardcoded course information
-        Course cse20 = new Course("CSE 20","Intro to Programming","4","11111");
-        Course cse21 = new Course("CSE 21","Intro to Programming","4","11111");
-        Course cse30 = new Course("CSE 30","Data Structures","4","11111");
-        cse30.setPrereqs(cse21);
-        Course cse31 = new Course("CSE 31","Intro II","4","11111");
-        cse31.setPrereqs(cse30);
-        Course cse100 = new Course("CSE 100","Algorithm Design and Analysis","4","11111");
-        cse100.setPrereqs(cse31);
-        Course cse160 = new Course("CSE 160","Networks","4","11111");
-        cse160.setPrereqs(cse31);
-        Course cse120 = new Course("CSE 120","Software Engineering","4","11111");
-        cse120.setPrereqs(cse160);
-        Course cse135 = new Course("CSE 135","Intro to Theory of Computation","4","11111");
-        cse135.setPrereqs(cse160);
-        Course cse175 = new Course("CSE 175","Intro to AI","4","11111");
-        cse175.setPrereqs(cse20);
-        cse175.setPrereqs(cse21);
-        Course cse180 = new Course("CSE 180","Intro to Robotics","4","11111");
-        cse180.setPrereqs(cse31);
+        Schedule schedule = new Schedule();
+        schedule.BuildSchedule(student.getMajor().majorCourseList,student);
+        schedule.printSchedule();
 
-        ArrayList<Course> catalog = new ArrayList<>();
-        catalog.add(cse20);
-        catalog.add(cse21);
-        catalog.add(cse30);
-        catalog.add(cse31);
-        catalog.add(cse100);
-        catalog.add(cse160);
-        catalog.add(cse120);
-        catalog.add(cse135);
-        catalog.add(cse175);
-        catalog.add(cse180);
+        //unique = removeDuplicates(recommendedCourses);
+        //unique = schedule.recommendedList;
 
-
-        recommendedCourses = catalog;
-
-        for(int i=0;i<recommendedCourses.size();i++){
-            for(int j=0;j<mark.studentCourseList.size();j++){
-                if(recommendedCourses.get(i).getName().equals(mark.studentCourseList.get(j).getName())){
-
-                        recommendedCourses.remove(catalog.get(i));
-                }
-            }
-        }
-
-        /*
-        //recommendedCourses = getRecommended(mark,catalog);
-        for(int i=0;i<catalog.size();i++){
-            for(int j=0;j<mark.studentCourseList.size();j++){
-                if(!catalog.get(i).getName().equals(mark.studentCourseList.get(j).getName())){
-
-                    if(!(recommendedCourses.contains(mark.studentCourseList.get(j))))
-                        recommendedCourses.add(catalog.get(i));
-                }
-            }
-        }
-        */
-
-
-        unique = removeDuplicates(recommendedCourses);
-
-        ArrayAdapter<Course> adapter = new CourseListAdapter();
+        semester_list = schedule.semesterList;
+        ArrayAdapter<Semester> adapter = new SemesterListAdapter();
         courseListView.setAdapter(adapter);
 
+        //ArrayAdapter<Course> adapter = new CourseListAdapter();
+        //courseListView.setAdapter(adapter);
+
+        /*
         courseListView.setOnItemClickListener(
                 new AdapterView.OnItemClickListener() {
 
@@ -145,34 +68,8 @@ public class RecommendationActivity extends ActionBarActivity {
                     }
                 }
         );
+        */
 
-        //test.setText(recommendedCourses.get(7).getName());
-
-        //Course course = mark.studentCourseList.get(0);
-
-        //String name = mark.studentCourseList.get(0).getName();
-       //test.setText(mark.studentCourseList.get(2).getName());
-
-    }
-
-    ArrayList<Course> removeDuplicates(ArrayList<Course> list) {
-
-        // Store unique items in result.
-        ArrayList<Course> result = new ArrayList<>();
-
-        // Record encountered Strings in HashSet.
-        HashSet<Course> set = new HashSet<>();
-
-        // Loop over argument list.
-        for (Course item : list) {
-
-            // If String is not in set, add it to the list and the set.
-            if (!set.contains(item)) {
-                result.add(item);
-                set.add(item);
-            }
-        }
-        return result;
     }
 
 
@@ -198,30 +95,105 @@ public class RecommendationActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    /*
     private class CourseListAdapter extends ArrayAdapter<Course> {
 
         public CourseListAdapter(){
 
-            super (RecommendationActivity.this,R.layout.coursename,unique);
+            super (RecommendationActivity.this,R.layout.schedule,unique);
         }
 
         @Override
         public View getView(int position, View view,ViewGroup parent){
 
             if(view == null)
-                view = getLayoutInflater().inflate(R.layout.coursename,parent,false);
+                view = getLayoutInflater().inflate(R.layout.schedule,parent,false);
 
             Course currentCourse = unique.get(position);
 
-            TextView course_name = (TextView) view.findViewById(R.id.textView1);
+            TextView course_name = (TextView) view.findViewById(R.id.semesterName);
             course_name.setText(currentCourse.getName());
 
+            return view;
+        }
 
+    }
+    */
 
+    //TEST FOR DISPLAYING SEMESTER LIST TO SCREEN
+    private class SemesterListAdapter extends ArrayAdapter<Semester> {
+
+        public SemesterListAdapter(){
+
+            super (RecommendationActivity.this,R.layout.schedule,semester_list);
+        }
+
+        @Override
+        public View getView(int position, View view,ViewGroup parent){
+
+            if(view == null)
+                view = getLayoutInflater().inflate(R.layout.schedule,parent,false);
+
+            Semester current_semester = semester_list.get(position);
+            TextView semester_name = (TextView) view.findViewById(R.id.semesterName);
+            semester_name.setText(current_semester.getName());
+
+            //current course stores the first course within the selected semester
+            if(!current_semester.semesterCourseList.isEmpty())
+            {
+                    Course current_course1 = current_semester.semesterCourseList.get(0);
+                    TextView course_name1 = (TextView) view.findViewById(R.id.courseName1);
+                    course_name1.setText(current_course1.getName());
+
+                if(current_semester.semesterCourseList.size() >= 2)
+                {
+                    Course current_course2 = current_semester.semesterCourseList.get(1);
+                    TextView course_name2 = (TextView) view.findViewById(R.id.courseName2);
+                    course_name2.setText(current_course2.getName());
+                }
+
+                if(current_semester.semesterCourseList.size() >= 3)
+                {
+                        Course current_course3 = current_semester.semesterCourseList.get(2);
+                        TextView course_name3 = (TextView) view.findViewById(R.id.courseName3);
+                        course_name3.setText(current_course3.getName());
+                }
+
+                if(current_semester.semesterCourseList.size() >= 4) {
+                    Course current_course4 = current_semester.semesterCourseList.get(3);
+                    TextView course_name4 = (TextView) view.findViewById(R.id.courseName4);
+                    course_name4.setText(current_course4.getName());
+                }
+
+            }
+            else
+            {
+
+            }
 
             return view;
         }
 
 
+    }
+
+    ArrayList<Course> removeDuplicates(ArrayList<Course> list) {
+
+        // Store unique items in result.
+        ArrayList<Course> result = new ArrayList<>();
+
+        // Record encountered Strings in HashSet.
+        HashSet<Course> set = new HashSet<>();
+
+        // Loop over argument list.
+        for (Course item : list) {
+
+            // If String is not in set, add it to the list and the set.
+            if (!set.contains(item)) {
+                result.add(item);
+                set.add(item);
+            }
+        }
+        return result;
     }
 }

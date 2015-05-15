@@ -17,14 +17,6 @@
      android:layout_centerHorizontal="true"
      android:layout_marginTop="30dp" />
 
-    <Spinner
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/MajorList"
-        android:layout_below="@+id/Banner"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="40dp" />
-
     <ListView
         android:layout_width="288dp"
         android:layout_height="fill_parent"

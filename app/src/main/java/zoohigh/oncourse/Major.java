@@ -1,23 +1,23 @@
 package zoohigh.oncourse;
 
 import java.io.Serializable;
-import java.util.Vector;
+import java.util.ArrayList;
 
 public class Major implements Serializable{
 
-    Vector<Course> majorCourseList;
+    ArrayList<Course> majorCourseList;
     String name;
 
     Major(){
 
         name = "name";
-        majorCourseList = new Vector<Course>();
+        majorCourseList = new ArrayList<Course>();
     }
 
     Major(String Name){
 
         name = Name;
-        majorCourseList = new Vector<Course>();
+        majorCourseList = new ArrayList<Course>();
     }
 
 }
