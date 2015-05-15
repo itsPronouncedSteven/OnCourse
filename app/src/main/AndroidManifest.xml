@@ -4,7 +4,11 @@
 
     <application
         android:allowBackup="true"
+<<<<<<< HEAD
         android:icon="@drawable/oncourse_logo_bg1"
+=======
+        android:icon="@drawable/oncourselogotrans"
+>>>>>>> 74bff063cc904d4193752331eb9653e7d0fe97d3
         android:label="OnCourse"
         android:theme="@style/AppTheme" >
         <activity android:name=".SplashActivity" >
