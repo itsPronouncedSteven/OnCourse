@@ -5,7 +5,7 @@ package zoohigh.oncourse;
  */
 public class Model {
     String name;
-    int value; /* 0 -&gt; checkbox disable, 1 -&gt; checkbox enable */
+    public int value; /* 0 -&gt; checkbox disable, 1 -&gt; checkbox enable */
     Course course;
 
     Model(String name, int value,Course course){
@@ -18,6 +18,10 @@ public class Model {
     }
     public int getValue(){
         return this.value;
+    }
+
+    public void setValue(int check){
+        this.value = check;
     }
 
 

@@ -6,22 +6,16 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.ListView;
-import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Vector;
 
 
-public class CourseAddActivity extends ActionBarActivity {
+
+public class CourseAddActivity extends ActionBarActivity{
 
     ListView myList;
     Model[] myItems;
@@ -97,16 +91,16 @@ public class CourseAddActivity extends ActionBarActivity {
         CSE.majorCourseList.add(cse175);
         CSE.majorCourseList.add(cse180);
 
-        student.addStudentCourse(cse20);
-        student.addStudentCourse(cse21);
+        //student.addStudentCourse(cse20);
+       // student.addStudentCourse(cse21);
 
 
         myList = (ListView)findViewById(R.id.ClassList);
         myItems = new Model[10];
-        myItems[0] = new Model("CSE20",1,cse20);
-        myItems[1] = new Model("CSE21", 1,cse21);
-        myItems[2] = new Model("CSE30", 1,cse30);
-        myItems[3] = new Model("CSE31", 1,cse31);
+        myItems[0] = new Model("CSE20",0,cse20);
+        myItems[1] = new Model("CSE21", 0,cse21);
+        myItems[2] = new Model("CSE30", 0,cse30);
+        myItems[3] = new Model("CSE31", 0,cse31);
         myItems[4] = new Model("CSE100", 0,cse100);
         myItems[5] = new Model("CSE120", 0,cse120);
         myItems[6] = new Model("CSE135", 0,cse135);
@@ -116,19 +110,6 @@ public class CourseAddActivity extends ActionBarActivity {
 
         CustomAdapter adapter = new CustomAdapter(this, myItems);
         myList.setAdapter(adapter);
-
-/*
-        myList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
-                Model model = (Model) parent.getItemAtPosition(position);
-                Toast.makeText(getApplicationContext(),"clicked On Row" + model.getName(),Toast.LENGTH_LONG).show();
-                //Toast.makeText(CourseAddActivity.this,"myPos" + position, Toast.LENGTH_LONG).show();
-            }
-        });
-*
-
 
         /*
 
@@ -152,7 +133,7 @@ public class CourseAddActivity extends ActionBarActivity {
             @Override
             public void onClick(View view) {
                 Toast.makeText(getApplicationContext(), "Your classes have been added.", Toast.LENGTH_SHORT).show();
-
+                student.studentCourseList.clear();
                 for(int i = 0;i < myItems.length;i++){
 
                     System.out.println("my items:" + myItems[i]);
