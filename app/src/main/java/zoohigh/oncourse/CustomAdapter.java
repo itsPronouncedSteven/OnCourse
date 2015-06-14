@@ -19,11 +19,6 @@ public CustomAdapter(Context context, Model[] resource) {
         this.modelItems = resource;
         }
 
-private class ViewHolder{
-    TextView code;
-    CheckBox name;
-}
-
 @Override
 public View getView(final int position, View convertView, ViewGroup parent) {
         // TODO Auto-generated method stub
@@ -35,30 +30,25 @@ public View getView(final int position, View convertView, ViewGroup parent) {
         final CheckBox cb = (CheckBox) convertView.findViewById(R.id.checkBox1);
         name.setText(modelItems[position].getName());
 
-    cb.setOnClickListener(new View.OnClickListener() {
-        @Override
-        public void onClick(View view) {
-            //Toast.makeText(getApplicationContext(), "Your classes have been added.", Toast.LENGTH_SHORT).show();
-
-            if(modelItems[position].getValue() == 1){
-                modelItems[position].setValue(0);
-                System.out.println("Value was 1, value now set to: " + modelItems[position].getValue());
+        cb.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(modelItems[position].getValue() == 1){
+                    modelItems[position].setValue(0);
+                    System.out.println("Value was 1, value now set to: " + modelItems[position].getValue());
+                }
+                else{
+                    modelItems[position].setValue(1);
+                    System.out.println("Value is 0, value now set to: " + modelItems[position].getValue());
+                }
             }
-            else{
-                modelItems[position].setValue(1);
-                System.out.println("Value is 0, value now set to: " + modelItems[position].getValue());
-            }
-            //System.out.println("Clicked " + modelItems[position].getName() + " has value " + modelItems[position].getValue());
-        }
 
-    });
-
-
+        });
 
         if(modelItems[position].getValue() == 1)
-        cb.setChecked(true);
+            cb.setChecked(true);
         else
-        cb.setChecked(false);
+            cb.setChecked(false);
 
 
 

@@ -40,35 +40,10 @@ public class RecommendationActivity extends ActionBarActivity {
         schedule.BuildSchedule(student.getMajor().majorCourseList,student);
         schedule.printSchedule();
 
-        //unique = removeDuplicates(recommendedCourses);
-        //unique = schedule.recommendedList;
-
         semester_list = schedule.semesterList;
         ArrayAdapter<Semester> adapter = new SemesterListAdapter();
         courseListView.setAdapter(adapter);
 
-        //ArrayAdapter<Course> adapter = new CourseListAdapter();
-        //courseListView.setAdapter(adapter);
-
-        /*
-        courseListView.setOnItemClickListener(
-                new AdapterView.OnItemClickListener() {
-
-                    @Override
-                    public void onItemClick(AdapterView<?> arg0, View view,
-                                            int position, long id) {
-                        // TODO Auto-generated method stub
-                        Course course = (Course)courseListView.getItemAtPosition(position);
-                        Intent intent = new Intent(RecommendationActivity.this,CourseDetail.class);
-                        intent.putExtra("course",course);
-                        startActivity(intent);
-
-
-
-                    }
-                }
-        );
-        */
 
     }
 
@@ -95,31 +70,7 @@ public class RecommendationActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    /*
-    private class CourseListAdapter extends ArrayAdapter<Course> {
-
-        public CourseListAdapter(){
-
-            super (RecommendationActivity.this,R.layout.schedule,unique);
-        }
-
-        @Override
-        public View getView(int position, View view,ViewGroup parent){
-
-            if(view == null)
-                view = getLayoutInflater().inflate(R.layout.schedule,parent,false);
-
-            Course currentCourse = unique.get(position);
-
-            TextView course_name = (TextView) view.findViewById(R.id.semesterName);
-            course_name.setText(currentCourse.getName());
-
-            return view;
-        }
-
-    }
-    */
-
+    
     //TEST FOR DISPLAYING SEMESTER LIST TO SCREEN
     private class SemesterListAdapter extends ArrayAdapter<Semester> {
 
